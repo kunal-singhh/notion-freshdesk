@@ -1,5 +1,7 @@
 ## Notion Article Repo for Solution References | Notion Articles Sync with Freshdesk Solutions 
 
+![screenshot-boards](./docs/app-snap.png)
+
 
 ## Learnings 
 
