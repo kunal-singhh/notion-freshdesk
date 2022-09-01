@@ -1,4 +1,10 @@
-## Notion Article Repo for Solution References | Notion Articles Sync with Freshdesk Solutions 
+## Freshdesk Notion App
+
+Notion App Integration for creating and sharing Notion pages as self help articles via Ticket Replies
+
+## Future Scope
+- Work on a Sync up tool which syncs notion pages with Solution Articles in Freshdesk
+
 
 ![screenshot-boards](./docs/app-snap.png)
 
