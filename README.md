@@ -1,10 +1,6 @@
 ## Freshdesk Notion App
 
-Notion App Integration for creating and sharing Notion pages as self help articles via Ticket Replies
-
-## Future Scope
-- Work on a Sync up tool which syncs notion pages with Solution Articles in Freshdesk
-
+- Notion App Integration for creating and sharing Notion pages as self help articles via Ticket Replies
 
 ![screenshot-boards](./docs/app-snap.png)
 
@@ -16,7 +12,11 @@ Notion App Integration for creating and sharing Notion pages as self help articl
 - Notion API (https://developers.notion.com/reference/intro)
 - Crayons Library (https://crayons.freshworks.com/)
 
-# Notes 
+## Notes 
 
 - Can not invoke interface methods from modal hence pass them back to parent and then invoke interface methods 
 - instance methods can be used to send data between different instances modal <-> app 
+
+## Future Scope
+- Work on a Sync up tool which syncs notion pages with Solution Articles in Freshdesk
+
