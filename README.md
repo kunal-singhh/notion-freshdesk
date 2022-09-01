@@ -1,6 +1,6 @@
 ## Freshdesk Notion App
 
-![Banner](./docs/banner2.png)
+![Banner](./docs/banner3.png)
 
 - Notion App Integration for creating and sharing Notion pages as self help articles via Ticket Replies
 
