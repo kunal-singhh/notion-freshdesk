@@ -1,0 +1,21 @@
+{
+  "platform-version": "2.2",
+  "product": {
+    "freshdesk": {
+      "location": {
+        "ticket_sidebar": {
+          "url": "index.html",
+          "icon": "styles/images/notion-dark.svg"
+        }
+      }
+    }
+  },
+  "whitelisted-domains": [
+    "https://api.notion.com",
+    "https://test-app.freshdesk.com"
+  ],
+  "engines": {
+    "node": "14.20.0",
+    "fdk": "8.5.0"
+  }
+}

@@ -1,0 +1,81 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:after,
+*::before {
+  box-sizing: inherit;
+}
+
+.main {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+
+
+.note {
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  margin-bottom: 4px;
+}
+
+.note:nth-child(odd){
+  background: rgb(236 236 236);
+} 
+
+.loader{
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+}
+
+.tags-wrapper span , .category span , .suggested-tags span{
+  padding: 4px 8px;
+  background: #264966;
+  border-radius: 8px;
+  color: white;
+  min-width: max-content;
+}
+        
+
+.tags-wrapper span{
+  background:#264966;
+}
+
+.question-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.question {
+  flex: 1;
+}
+
+.note-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.suggested-tags {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  overflow-x: auto;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+.load-more{
+  display: none;
+}
