@@ -5,10 +5,10 @@
 
 ## Learnings 
 
-Freshdesk SDK
-Freshdesk API
-Notion API
-Crayons Library
+- Freshdesk SDK
+- Freshdesk API
+- Notion API
+- Crayons Library
 
 # Notes 
 
