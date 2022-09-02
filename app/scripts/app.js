@@ -40,9 +40,7 @@ async function init() {
 }
 
 async function onAppActivated() {
-  document.querySelector("#apptext").innerHTML = "App Activated" + "<br><br>";
-  // let notes = await getNotes();
-  // renderNotes(notes)
+  // let notes = await getNotes({ page_size: 3 });
   console.log("Event Registered");
   document.querySelector(".toggle-btn").addEventListener("click", function (e) {
     launchModal("Article Repositoriess", "templates/index.html", {

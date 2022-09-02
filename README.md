@@ -9,10 +9,14 @@
 
 ## Learnings 
 
-- Freshdesk SDK (https://developers.freshdesk.com/v2/docs/quick-start/)
-- Freshdesk API  (https://developers.freshdesk.com/api/)
-- Notion API (https://developers.notion.com/reference/intro)
-- Crayons Library (https://crayons.freshworks.com/)
+### - Freshdesk SDK (https://developers.freshdesk.com/v2/docs/quick-start/)
+
+### - Freshdesk API  (https://developers.freshdesk.com/api/)
+
+### - Notion API (https://developers.notion.com/reference/intro)
+
+### - Crayons Library (https://crayons.freshworks.com/)
+    1. Custom Styled Components 
 
 ## Notes 
 

@@ -1,7 +1,6 @@
 let headersList = {
   "Notion-Version": "2022-06-28",
-  Authorization:
-    "Bearer secret_g8x8qRjQydSjOLWaYSH9X1CdLtQdExfOhAG8k7mFNkv",
+  Authorization: "Bearer secret_g8x8qRjQydSjOLWaYSH9X1CdLtQdExfOhAG8k7mFNkv",
   "Content-Type": "application/json",
 };
 
@@ -13,9 +12,9 @@ async function init() {
     client = await app.initialized();
     context = await client.instance.context();
     console.log(context);
-    document.body.append(JSON.stringify(context));
+    // document.body.append(JSON.stringify(context));
     let notes = await getNotes({ page_size: 3 });
-    localStorage.notes=JSON.stringify(notes);
+    localStorage.notes = JSON.stringify(notes);
     setAllTags(notes);
     renderNotes(notes);
 
@@ -99,20 +98,6 @@ async function getNotes(filter = {}, append = false) {
   return notes;
 }
 
-async function loadMore() {
-  if (cursor == null) {
-    document.querySelector(".load-more").style.display = "none";
-    return;
-  } else {
-    let notes = await getNotes({
-      page_size: 2,
-      start_cursor: cursor,
-    });
-    setAllTags(notes);
-    renderNotes(notes, true);
-  }
-}
-
 async function getNotesEntries(data) {
   console.log("notes");
   const notes = await Promise.all(
@@ -155,13 +140,29 @@ async function getNotesEntries(data) {
   return entries;
 }
 
+async function loadMore() {
+  if (cursor == null) {
+    document.querySelector(".load-more").style.display = "none";
+    return;
+  } else {
+    let notes = await getNotes({
+      page_size: 2,
+      start_cursor: cursor,
+    });
+    setAllTags(notes);
+    renderNotes(notes, true);
+  }
+}
+
 function parseTags(tags) {
   let tagsMarkup = tags.reduce((acc, curr, index, arr) => {
     return (
       acc +
       `
-      <span class="tag">${curr}</span>
-    `
+      <fw-pill color="blue">
+        ${curr}
+      </fw-pill>
+      `
     );
   }, "");
   return tagsMarkup;
@@ -194,41 +195,33 @@ function renderNotes(notes, append = false) {
     ? document.querySelector(".table").innerHTML + markUp
     : markUp;
   document.querySelector(".loader").style.display = "none";
-  document.querySelector(".load-more").style.display = cursor
-    ? "flex"
-    : "none";
+  document.querySelector(".load-more").style.display = cursor ? "flex" : "none";
 }
 
+var allTags = [ "notion", "problem", "custom", "hack", "code", "css", "design","api", "growth"];
 function setAllTags(notes) {
-  let allTags = notes.reduce(function (acc, elem, i, arr) {
-    acc.push(...elem.tags);
-    return acc;
-  }, []);
-  let allUniqueTags = Array.from(new Set(allTags));
-  document.querySelector(".suggested-tags").innerHTML += allUniqueTags
-    .map((tag) => `<span class="tag">${tag}</span>`)
-    .join("");
-
-  document.querySelector(".suggested-tags").innerHTML = Array.from(
-    new Set(
-      Array.from(
-        document.querySelector(".suggested-tags").querySelectorAll(".tag")
-      ).map((tag) => tag.innerHTML)
-    )
-  )
-    .map((tag) => `<span class="tag">${tag}</span>`)
-    .join("");
-
-  var selectDataSource = allUniqueTags.map((tag, index) => {
+  // let newTags = notes.reduce(function (acc, elem, i, arr) {
+  //   acc.push(...elem.tags);
+  //   return acc;
+  // }, []);
+  // console.log({ allTags });
+  // allTags = Array.from(new Set([...allTags, ...newTags]));
+  // console.log({ allTags });
+  var selectDataSource = allTags.map((tag, index) => {
     return {
-      value: index + 1,
+      value: tag,
       text: tag,
     };
   });
 
   var fwSelect = document.querySelector("fw-select");
   fwSelect.options = selectDataSource;
+  console.log({ fW: fwSelect.options });
 }
+
+document.querySelector("fw-select").addEventListener("fwChange", function (e) {
+  console.log(e.detail.value);
+});
 
 async function replytoTicket(ticket_id, reply_data) {
   let headersList = {
