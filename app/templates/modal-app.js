@@ -28,10 +28,20 @@ async function init() {
         console.log(keyword);
         let notes = await getNotes({
           filter: {
-            property: "Question",
-            rich_text: {
-              contains: keyword,
-            },
+            or: [
+              {
+                property: "Question",
+                rich_text: {
+                  contains: keyword,
+                },
+              },
+              {
+                property: "Tag",
+                multi_select: {
+                  contains: keyword,
+                },
+              }
+            ],
           },
           page_size: 2,
         });
@@ -198,7 +208,17 @@ function renderNotes(notes, append = false) {
   document.querySelector(".load-more").style.display = cursor ? "flex" : "none";
 }
 
-var allTags = [ "notion", "problem", "custom", "hack", "code", "css", "design","api", "growth"];
+var allTags = [
+  "notion",
+  "problem",
+  "custom",
+  "hack",
+  "code",
+  "css",
+  "design",
+  "api",
+  "growth",
+];
 function setAllTags(notes) {
   // let newTags = notes.reduce(function (acc, elem, i, arr) {
   //   acc.push(...elem.tags);
