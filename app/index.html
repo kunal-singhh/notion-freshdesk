@@ -10,10 +10,14 @@
       async
       src="https://static.freshdev.io/fdk/2.0/assets/fresh_client.js"
     ></script>
-     <link
+    <link
       rel="stylesheet"
       type="text/css"
       href="https://static.freshdev.io/fdk/2.0/assets/freshdesk.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://crayons.freshworks.com/css/crayons-min.css"
     />
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
   </head>
@@ -21,29 +25,82 @@
   <body>
     <div class="main">
       <p>Helpdesk Reference Articles</p>
-      <fw-button class="toggle-btn" color="secondary"> Show More Options </fw-button>
- 
+     
       <div id="apptext">
-        
         <div class="table">
-         
+          <div class="card fw-card-1 fw-p-8 fw-flex fw-flex-row"
+            data-note-id="1"
+          >
+            <div class="question-wrapper">
+              <div class="question">
+                <a
+                  href="https://enchanted-bougon-d59.notion.site/How-to-Paginate-notion-database-entries-f45d5f089db942388e452b0c0621a9f6"
+                  target="_blank"
+                >
+                  How to Paginate notion database entries
+                </a>
+              </div>
+            </div>
+            <div class="note-footer">
+              <div class="tags-wrapper" hidden>
+                <fw-pill color="blue" class="hydrated"> notion </fw-pill>
+              </div>
+
+              <fw-button
+                class="add-article hydrated"
+                color="link"
+                data-note-id="1"
+                >Add
+              </fw-button>
+            </div>
+          </div>
+
+          <div class="card fw-card-1 fw-p-8 fw-flex fw-flex-row"
+            data-note-id="2"
+          >
+            <div class="question-wrapper">
+              <div class="question">
+                <a
+                  href="https://enchanted-bougon-d59.notion.site/What-is-the-area-of-a-square-a97e1903009c4344ba87064fd1f419c2"
+                  target="_blank"
+                >
+                  What is the area of a square
+                </a>
+              </div>
+            </div>
+            <div class="note-footer">
+              <div class="tags-wrapper" hidden> 
+                <fw-pill color="blue" class="hydrated"> problem </fw-pill>
+
+                <fw-pill color="blue" class="hydrated"> custom </fw-pill>
+              </div>
+
+              <fw-button
+                class="add-article hydrated"
+                color="link"
+                data-note-id="2"
+                >Add
+              </fw-button>
+            </div>
+          </div>
         </div>
 
-
       </div>
-    </div>
 
+      <fw-button class="toggle-btn" color="secondary">
+        Show More Options
+      </fw-button>
+
+    </div>
   </body>
 
   <script defer src="scripts/app.js"></script>
   <script
-    async
     type="module"
-    src="https://unpkg.com/@freshworks/crayons@3/dist/crayons/crayons.esm.js"
+    src="https://unpkg.com/@freshworks/crayons@v3/dist/crayons/crayons.esm.js"
   ></script>
   <script
-    async
     nomodule
-    src="https://unpkg.com/@freshworks/crayons@3/dist/crayons/crayons.js"
+    src="https://unpkg.com/@freshworks/crayons@v3/dist/crayons/crayons.js"
   ></script>
 </html>

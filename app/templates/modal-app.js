@@ -4,12 +4,21 @@ let headersList = {
   "Content-Type": "application/json",
 };
 
-var client, context, cursor;
+var context, cursor;
 
 async function init() {
   try {
+    // retry event listener
+    document.querySelector("body").addEventListener("click", function (e) {
+      if (e.target.id == "retry") {
+        document.querySelector(".error").innerHTML="";
+        search();
+        document.querySelector(".loader").style.display = "flex";
+      }
+    });
+
     // get already initialized client and get context sent to modal
-    client = await app.initialized();
+    let client = await app.initialized();
     context = await client.instance.context();
     console.log(context);
     // document.body.append(JSON.stringify(context));
@@ -24,29 +33,7 @@ async function init() {
     document
       .querySelector(".search-wrapper fw-button")
       .addEventListener("click", async function (e) {
-        let keyword = document.querySelector(".search").value;
-        console.log(keyword);
-        let notes = await getNotes({
-          filter: {
-            or: [
-              {
-                property: "Question",
-                rich_text: {
-                  contains: keyword,
-                },
-              },
-              {
-                property: "Tags",
-                multi_select: {
-                  contains: keyword,
-                },
-              }
-            ],
-          },
-          page_size: 2,
-        });
-        setAllTags(notes);
-        renderNotes(notes);
+        search();
       });
 
     // adding ticket reply feature
@@ -57,7 +44,6 @@ async function init() {
           e.target.tagName == "FW-BUTTON" &&
           e.target.classList.contains("add-article")
         ) {
-          let ticket = await client.data.get("ticket");
           let body = e.target
             .closest("div.card")
             .querySelector(".question").innerHTML;
@@ -67,25 +53,26 @@ async function init() {
               e.target
                 .closest("div.card")
                 .querySelector(".note-footer")
-                .querySelectorAll(".tags-wrapper span")
+                .querySelectorAll(".tags-wrapper fw-pill")
             )
               .map((tag) => tag.innerText)
               .join(", ");
 
           let reply_data = body; // JSON.stringify({ body: body }); // format for api request
-          replytoTicket(ticket.ticket.id, reply_data);
+          replytoTicket(reply_data);
         }
       });
 
     // load-more button
-    document
-      .querySelector(".load-more")
-      .addEventListener("click", function () {
-        console.log("loading...");
-        loadMore();
-      });
+    document.querySelector(".load-more").addEventListener("click", function () {
+      console.log("loading...");
+      loadMore();
+    });
   } catch (err) {
     console.log(err);
+    document.querySelector(".loader").style.display = "none";
+    document.querySelector(".error").innerHTML =
+      "Something went Wrong <br> <fw-button id='retry' color='green'>Retry</fw-button>";
   }
 }
 
@@ -94,6 +81,7 @@ init();
 async function getNotes(filter = {}) {
   document.querySelector(".loader").style.display = "flex";
   let bodyContent = JSON.stringify(filter);
+  let client = await app.initialized();
   let results = await client.request.post(
     "https://api.notion.com/v1/databases/be0f2b02b980412488cf9552b721e8da/query",
     {
@@ -110,6 +98,7 @@ async function getNotes(filter = {}) {
 
 async function getNotesEntries(data) {
   console.log("notes");
+  let client = await app.initialized();
   const notes = await Promise.all(
     data.results.map(async (page) => {
       const properties = { url: page.url };
@@ -244,7 +233,8 @@ document.querySelector("fw-select").addEventListener("fwChange", function (e) {
   console.log(e.detail.value);
 });
 
-async function replytoTicket(ticket_id, reply_data) {
+async function replytoTicket(reply_data) {
+  let client = await app.initialized();
   try {
     // send data to parent and then using product events send open reply editor and append reply data
     await client.instance.send({
@@ -256,5 +246,38 @@ async function replytoTicket(ticket_id, reply_data) {
     console.log(error);
     document.querySelector(".error").innerHTML = JSON.stringify(error);
     document.querySelector(".loader").style.display = "none";
+  }
+}
+
+async function search() {
+  try {
+    let keyword = document.querySelector(".search").value;
+    console.log(keyword);
+    let notes = await getNotes({
+      filter: {
+        or: [
+          {
+            property: "Question",
+            rich_text: {
+              contains: keyword,
+            },
+          },
+          {
+            property: "Tags",
+            multi_select: {
+              contains: keyword,
+            },
+          },
+        ],
+      },
+      page_size: 2,
+    });
+    setAllTags(notes);
+    renderNotes(notes);
+  } catch (err) {
+    console.log(err);
+    document.querySelector(".loader").style.display = "none";
+    document.querySelector(".error").innerHTML =
+      "Something went Wrong <br> <fw-button id='retry' color='green'>Retry</fw-button>";
   }
 }
