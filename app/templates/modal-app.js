@@ -32,7 +32,7 @@ async function init() {
     // adding search feature
     document
       .querySelector(".search-wrapper fw-button")
-      .addEventListener("click", async function (e) {
+      .addEventListener("click", async function () {
         search();
       });
 
