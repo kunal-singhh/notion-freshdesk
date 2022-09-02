@@ -7,7 +7,6 @@
 ![screenshot-boards](./docs/app-snap.png)
 ![Ticket](./docs/ticket-snap.jpg)
 
-
 ## Learnings 
 
 - Freshdesk SDK (https://developers.freshdesk.com/v2/docs/quick-start/)
