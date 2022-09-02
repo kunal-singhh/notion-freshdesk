@@ -5,7 +5,7 @@ coverage/
 .vscode/
 node_modules/
 test_data/
-dist/
+# dist/
 config/oauth_config.json
 config/iparam_test_data.json
 log/
