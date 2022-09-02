@@ -28,8 +28,8 @@ async function init() {
         console.log(keyword);
         let notes = await getNotes({
           filter: {
-            property: "Tags",
-            multi_select: {
+            property: "Question",
+            rich_text: {
               contains: keyword,
             },
           },
