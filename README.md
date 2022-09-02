@@ -4,7 +4,7 @@
 
 - Notion App Integration for creating and sharing Notion pages as self help articles via Ticket Replies
 
-![screenshot-boards](./docs/app-snap.png)
+![screenshot-boards](./docs/app-snap2.png)
 ![Ticket](./docs/ticket-snap.jpg)
 
 ## Learnings 
@@ -16,7 +16,7 @@
 ### - Notion API (https://developers.notion.com/reference/intro)
 
 ### - Crayons Library (https://crayons.freshworks.com/)
-    1. Custom Styled Components 
+1. Custom Styled Components 
 
 ## Notes 
 
