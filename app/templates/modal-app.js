@@ -1,6 +1,6 @@
 let headersList = {
   "Notion-Version": "2022-06-28",
-  Authorization: "Bearer secret_g8x8qRjQydSjOLWaYSH9X1CdLtQdExfOhAG8k7mFNkv",
+  Authorization: 'Bearer <%= iparam.api_key %>  ', //secret_g8x8qRjQydSjOLWaYSH9X1CdLtQdExfOhAG8k7mFNkv",
   "Content-Type": "application/json",
 };
 

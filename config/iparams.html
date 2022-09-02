@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>A Template App</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      async
+      src="https://static.freshdev.io/fdk/2.0/assets/fresh_client.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://static.freshdev.io/fdk/2.0/assets/freshdesk.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://crayons.freshworks.com/css/crayons-min.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="app/styles/style.css" />
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="contact-fields">
+        <h3>Contact Fields</h3>
+        <form>
+          <label for="api_key">API key</label>
+          <input type="text" name="api_key" />
+          <span id="error_div" class="error" style="display: none"
+            >Please enter a valid input. Please enter only alphabets.</span
+          >
+          <label for="first_name">First Name</label>
+          <input type="text" name="first_name" />
+          <label for="last_name">Last Name</label>
+          <input type="text" name="last_name" />
+        </form>
+      </div>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+
+    // sets data from .fdk/localstore
+    function postConfigs() {
+      var contact = {};
+      var api_key = $("input[name=api_key]").val();
+      var first_name = $("input[name=first_name]").val();
+      var last_name = $("input[name=last_name]").val();
+      contact["first_name"] = first_name;
+      contact["last_name"] = last_name;
+      return {
+        __meta: {
+          secure: ["api_key"],
+        },
+        api_key,
+        contact,
+      };
+    }
+
+    // gets existing data from .fdk/localstore
+    function getConfigs(configs) {
+      $("#error_div").hide();
+      $("input[name=api_key]").val(configs["api_key"]);
+      $("input[name=first_name]").val(configs.contact["first_name"]);
+      $("input[name=last_name]").val(configs.contact["last_name"]);
+    }
+
+    // validates data on submit
+    function validate() {
+      let isValid = true;
+      let formData = new FormData($("form")[0]);
+      let entries = Object.fromEntries([...formData]);
+      if(entries.api_key.length!=50 || entries.first_name.trim()=='' || entries.last_name.trim()=='')
+        isValid=false;
+
+        return isValid;
+    }
+  </script>
+
+  <script
+    type="module"
+    src="https://unpkg.com/@freshworks/crayons@v3/dist/crayons/crayons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/@freshworks/crayons@v3/dist/crayons/crayons.js"
+  ></script>
+</html>
