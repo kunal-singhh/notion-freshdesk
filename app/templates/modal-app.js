@@ -36,7 +36,7 @@ async function init() {
                 },
               },
               {
-                property: "Tag",
+                property: "Tags",
                 multi_select: {
                   contains: keyword,
                 },
