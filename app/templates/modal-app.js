@@ -80,7 +80,7 @@ async function init() {
     // load-more button
     document
       .querySelector(".load-more")
-      .addEventListener("click", function (e) {
+      .addEventListener("click", function () {
         console.log("loading...");
         loadMore();
       });
@@ -91,7 +91,7 @@ async function init() {
 
 init();
 
-async function getNotes(filter = {}, append = false) {
+async function getNotes(filter = {}) {
   document.querySelector(".loader").style.display = "flex";
   let bodyContent = JSON.stringify(filter);
   let results = await client.request.post(
@@ -165,7 +165,7 @@ async function loadMore() {
 }
 
 function parseTags(tags) {
-  let tagsMarkup = tags.reduce((acc, curr, index, arr) => {
+  let tagsMarkup = tags.reduce((acc, curr) => {
     return (
       acc +
       `
@@ -219,7 +219,8 @@ var allTags = [
   "api",
   "growth",
 ];
-function setAllTags(notes) {
+
+function setAllTags() {
   // let newTags = notes.reduce(function (acc, elem, i, arr) {
   //   acc.push(...elem.tags);
   //   return acc;
@@ -227,7 +228,7 @@ function setAllTags(notes) {
   // console.log({ allTags });
   // allTags = Array.from(new Set([...allTags, ...newTags]));
   // console.log({ allTags });
-  var selectDataSource = allTags.map((tag, index) => {
+  var selectDataSource = allTags.map((tag) => {
     return {
       value: tag,
       text: tag,
@@ -244,10 +245,6 @@ document.querySelector("fw-select").addEventListener("fwChange", function (e) {
 });
 
 async function replytoTicket(ticket_id, reply_data) {
-  let headersList = {
-    Authorization: "Basic QU16cno0em93UkZTTTJvUjRXOlg6",
-    "Content-Type": "application/json",
-  };
   try {
     // send data to parent and then using product events send open reply editor and append reply data
     await client.instance.send({

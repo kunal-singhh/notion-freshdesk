@@ -23,13 +23,13 @@ async function init() {
     `;
     console.log({contact,greeting})
     try {
-      let response = await client.interface.trigger("click", {
+      await client.interface.trigger("click", {
         id: "reply",
         text: greeting + data.message,
       });
       await client.interface.trigger('showNotify', {type:'success' , message : 'Created Reply with Article Link'});
     } catch (err) {
-      let response = client.interface.trigger("setValue", {
+      client.interface.trigger("setValue", {
         id: "editor",
         text: "<br>" + data.message,
       });
@@ -42,7 +42,7 @@ async function init() {
 async function onAppActivated() {
   // let notes = await getNotes({ page_size: 3 });
   console.log("Event Registered");
-  document.querySelector(".toggle-btn").addEventListener("click", function (e) {
+  document.querySelector(".toggle-btn").addEventListener("click", function () {
     launchModal("Article Repositoriess", "templates/index.html", {
       key: "value",
     });
