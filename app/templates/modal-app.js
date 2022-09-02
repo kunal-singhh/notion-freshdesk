@@ -11,7 +11,7 @@ async function init() {
     // retry event listener
     document.querySelector("body").addEventListener("click", function (e) {
       if (e.target.id == "retry") {
-        document.querySelector(".error").innerHTML="";
+        document.querySelector(".error").innerHTML = "";
         search();
         document.querySelector(".loader").style.display = "flex";
       }
@@ -140,16 +140,23 @@ async function getNotesEntries(data) {
 }
 
 async function loadMore() {
-  if (cursor == null) {
-    document.querySelector(".load-more").style.display = "none";
-    return;
-  } else {
-    let notes = await getNotes({
-      page_size: 2,
-      start_cursor: cursor,
-    });
-    setAllTags(notes);
-    renderNotes(notes, true);
+  try {
+    if (cursor == null) {
+      document.querySelector(".load-more").style.display = "none";
+      return;
+    } else {
+      let notes = await getNotes({
+        page_size: 2,
+        start_cursor: cursor,
+      });
+      setAllTags(notes);
+      renderNotes(notes, true);
+    }
+  } catch (err) {
+    console.log(err);
+    document.querySelector(".loader").style.display = "none";
+    document.querySelector(".error").innerHTML =
+      "Something went Wrong <br> <fw-button id='retry' color='green'>Retry</fw-button>";
   }
 }
 
