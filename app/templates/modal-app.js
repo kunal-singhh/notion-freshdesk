@@ -1,6 +1,6 @@
 let headersList = {
   "Notion-Version": "2022-06-28",
-  Authorization: 'Bearer <%= iparam.api_key %>  ', //secret_g8x8qRjQydSjOLWaYSH9X1CdLtQdExfOhAG8k7mFNkv",
+  Authorization: "Bearer <%= iparam.api_key %>  ", //secret_g8x8qRjQydSjOLWaYSH9X1CdLtQdExfOhAG8k7mFNkv",
   "Content-Type": "application/json",
 };
 
@@ -10,7 +10,7 @@ async function init() {
   try {
     // retry event listener
     document.querySelector("body").addEventListener("click", function (e) {
-      if (e.target.id == "retry") {
+      if (e.target.classList.contains("retry")) {
         document.querySelector(".error").innerHTML = "";
         search();
         document.querySelector(".loader").style.display = "flex";
@@ -72,8 +72,14 @@ async function init() {
   } catch (err) {
     console.log(err);
     document.querySelector(".loader").style.display = "none";
-    document.querySelector(".error").innerHTML =
-      "Something went Wrong <br> <fw-button id='retry' color='green'>Retry</fw-button>";
+    document.querySelector(
+      ".error"
+    ).innerHTML = `<div class="card fw-card-1 fw-p-24 fw-flex fw-items-center fw-flex-column">
+       Something went Wrong <br> <fw-button class='retry' color='green'>Retry</fw-button>
+       <div>
+        ${JSON.stringify(err)}
+       </div>
+      </div>`;
   }
 }
 
@@ -156,8 +162,14 @@ async function loadMore() {
   } catch (err) {
     console.log(err);
     document.querySelector(".loader").style.display = "none";
-    document.querySelector(".error").innerHTML =
-      "Something went Wrong <br> <fw-button id='retry' color='green'>Retry</fw-button>";
+    document.querySelector(
+      ".error"
+    ).innerHTML = `<div class="card fw-card-1 fw-p-24 fw-flex fw-items-center fw-flex-column">
+    Something went Wrong <br> <fw-button class='retry' color='green'>Retry</fw-button>
+    <div>
+        ${JSON.stringify(err)}
+       </div>
+    </div>`;
   }
 }
 
@@ -177,27 +189,35 @@ function parseTags(tags) {
 
 function renderNotes(notes, append = false) {
   let markUp = "";
-  notes.map((note, index) => {
-    return (markUp += `
-    <div class='card fw-card-1 fw-p-24 fw-flex fw-flex-column' data-note-id='${
-      index + 1
-    }'>
-        <div class="question-wrapper">
-          <div class="question"> <a href="${note.url}" target="_blank"> ${
-      note.question
-    } </a> </div>
-        </div>
-        <div class="note-footer">
-          <div class="tags-wrapper"> ${parseTags(note.tags)} </div>
-
-          <fw-button class="add-article" color='link' data-note-id='${
-            index + 1
-          }'>Add in Reply </fw-button>
-
+  console.log({ notes });
+  if (notes.length > 0) {
+    notes.map((note, index) => {
+      return (markUp += `
+      <div class='card fw-card-1 fw-p-24 fw-flex fw-flex-column' data-note-id='${
+        index + 1
+      }'>
+          <div class="question-wrapper">
+            <div class="question"> <a href="${note.url}" target="_blank"> ${
+        note.question
+      } </a> </div>
           </div>
-        </div>
-`);
-  });
+          <div class="note-footer">
+            <div class="tags-wrapper"> ${parseTags(note.tags)} </div>
+
+            <fw-button class="add-article" color='link' data-note-id='${
+              index + 1
+            }'>Add in Reply </fw-button>
+
+            </div>
+          </div>
+  `);
+    });
+  } else {
+    markUp = `<div class="card fw-card-1 fw-p-24 fw-flex fw-items-center fw-flex-column">
+      No Results Found!! <br>
+    </div>`;
+  }
+
   document.querySelector(".table").innerHTML = append
     ? document.querySelector(".table").innerHTML + markUp
     : markUp;
@@ -285,7 +305,13 @@ async function search() {
   } catch (err) {
     console.log(err);
     document.querySelector(".loader").style.display = "none";
-    document.querySelector(".error").innerHTML =
-      "Something went Wrong <br> <fw-button id='retry' color='green'>Retry</fw-button>";
+    document.querySelector(
+      ".error"
+    ).innerHTML = `<div class="card fw-card-1 fw-p-24 fw-flex fw-items-center fw-flex-column">
+       Something went Wrong <br> <fw-button class='retry' color='green'>Retry</fw-button>
+       <div>
+       ${JSON.stringify(err)}
+      </div>
+      </div>`;
   }
 }
