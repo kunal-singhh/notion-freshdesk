@@ -1,4 +1,6 @@
-var client , contentLoaded=false , notes;
+var client,
+  contentLoaded = false,
+  notes;
 
 init();
 
@@ -14,50 +16,54 @@ async function onAppActivated() {
       key: "value",
     });
   });
+  try {
+    // adding ticket reply feature
+    document
+      .querySelector("body")
+      .addEventListener("click", async function (e) {
+        if (e.target.classList.contains("add-article")) {
+          let body = e.target
+            .closest("div.card")
+            .querySelector(".question").innerHTML;
+          body +=
+            "<br> Tags :: " +
+            Array.from(
+              e.target
+                .closest("div.card")
+                .querySelector(".note-footer")
+                .querySelectorAll(".tags-wrapper fw-pill")
+            )
+              .map((tag) => tag.innerText)
+              .join(", ");
 
-  notes = !contentLoaded ? await getNotes({ page_size: 3 }) : notes;
-  contentLoaded = true;
-  console.log({ notes })
-  renderNotes(notes);
+          let reply_data = { message: body }; // JSON.stringify({ body: body }); // format for api request
+          addTicketReply(reply_data);
+        } else if (e.target.classList.contains("retry")) {
+          console.log("resetting");
+          document.querySelector(".loader").style.display = "flex";
+          document.querySelector(".error").innerHTML = "";
+          try {
+            let notes = await getNotes({ page_size: 3 });
+            renderNotes(notes);
+          } catch (err) {
+            handleError(err);
+          }
+        }
+      });
 
+    notes = !contentLoaded ? await getNotes({ page_size: 3 }) : notes;
+    contentLoaded = true;
+    console.log({ notes });
+    renderNotes(notes);
 
-  // receive data from modal
-  client.instance.receive(async function (event) {
-    var data = event.helper.getData();
-    addTicketReply(data);
-  });
-
-  // adding ticket reply feature
-  document
-    .querySelector(".table")
-    .addEventListener("click", async function (e) {
-      if (
-        e.target.tagName == "FW-BUTTON" &&
-        e.target.classList.contains("add-article")
-      ) {
-        let body = e.target
-          .closest("div.card")
-          .querySelector(".question").innerHTML;
-        body +=
-          "<br> Tags :: " +
-          Array.from(
-            e.target
-              .closest("div.card")
-              .querySelector(".note-footer")
-              .querySelectorAll(".tags-wrapper fw-pill")
-          )
-            .map((tag) => tag.innerText)
-            .join(", ");
-
-        let reply_data = { message: body }; // JSON.stringify({ body: body }); // format for api request
-        addTicketReply(reply_data);
-      } else if(e.target.classList.contains('reset')){
-        console.log('resetting');
-        let notes = await getNotes({ page_size: 3 });
-        console.log({ notes })
-        renderNotes(notes);
-      }
-    })
+    // receive data from modal
+    client.instance.receive(async function (event) {
+      var data = event.helper.getData();
+      addTicketReply(data);
+    });
+  } catch (err) {
+    handleError(err);
+  }
 }
 
 async function launchModal(title, template, data) {
@@ -92,15 +98,12 @@ async function addTicketReply(data) {
     `;
   console.log({ contact, greeting });
   try {
-
     await client.interface.trigger("click", {
       id: "reply",
       text: greeting + data.message,
     });
     showNotify("success", "Created Reply and Added Link!");
-
   } catch (err) {
-
     await client.interface.trigger("setValue", {
       id: "editor",
       text: "<br><br>" + data.message,
@@ -147,3 +150,4 @@ function renderNotes(notes, append = false) {
     : markUp;
   document.querySelector(".loader").style.display = "none";
 }
+

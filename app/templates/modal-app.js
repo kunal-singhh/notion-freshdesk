@@ -68,16 +68,7 @@ async function init() {
       loadMore();
     });
   } catch (err) {
-    console.log(err);
-    document.querySelector(".loader").style.display = "none";
-    document.querySelector(
-      ".error"
-    ).innerHTML = `<div class="card fw-card-1 fw-p-24 fw-flex fw-items-center fw-flex-column">
-       Something went Wrong <br> <fw-button class='retry' color='green'>Retry</fw-button>
-       <div>
-        ${JSON.stringify(err)}
-       </div>
-      </div>`;
+    handleError(err)
   }
 }
 
@@ -97,16 +88,7 @@ async function loadMore() {
       renderNotes(notes, true);
     }
   } catch (err) {
-    console.log(err);
-    document.querySelector(".loader").style.display = "none";
-    document.querySelector(
-      ".error"
-    ).innerHTML = `<div class="card fw-card-1 fw-p-24 fw-flex fw-items-center fw-flex-column">
-    Something went Wrong <br> <fw-button class='retry' color='green'>Retry</fw-button>
-    <div>
-        ${JSON.stringify(err)}
-       </div>
-    </div>`;
+    handleError(err)
   }
 }
 
@@ -228,15 +210,7 @@ async function search() {
     setAllTags(notes);
     renderNotes(notes);
   } catch (err) {
-    console.log(err);
-    document.querySelector(".loader").style.display = "none";
-    document.querySelector(
-      ".error"
-    ).innerHTML = `<div class="card fw-card-1 fw-p-24 fw-flex fw-items-center fw-flex-column">
-       Something went Wrong <br> <fw-button class='retry' color='green'>Retry</fw-button>
-       <div>
-       ${JSON.stringify(err)}
-      </div>
-      </div>`;
+    handleError(err)
   }
 }
+

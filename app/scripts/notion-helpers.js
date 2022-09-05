@@ -1,6 +1,6 @@
 let headersList = {
     "Notion-Version": "2022-06-28",
-    Authorization: "Bearer <%= iparam.api_key %>  ", //secret_g8x8qRjQydSjOLWaYSH9X1CdLtQdExfOhAG8k7mFNkv",
+    Authorization: "Bearer <%= iparam.api_key %> ", //secret_g8x8qRjQydSjOLWaYSH9X1CdLtQdExfOhAG8k7mFNkv",
     "Content-Type": "application/json",
 };
 
@@ -78,3 +78,14 @@ function parseTags(tags) {
     }, "");
     return tagsMarkup;
 }
+
+function handleError(err) {
+    console.log({ err });
+    document.querySelector(".loader").style.display = "none";
+    document.querySelector(
+      ".error"
+    ).innerHTML = `<div class="card fw-card-1 fw-p-24 fw-flex fw-items-center fw-flex-column">
+        Something went Wrong :: ${JSON.parse(err.response).message} <br> <fw-button class='retry' color='green'>Retry</fw-button>
+        </div>`;
+  }
+  
