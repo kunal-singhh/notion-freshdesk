@@ -1,5 +1,4 @@
-var client;
-
+var client , contentLoaded=false , notes;
 
 init();
 
@@ -16,9 +15,11 @@ async function onAppActivated() {
     });
   });
 
-  let notes = await getNotes({ page_size: 3 });
+  notes = !contentLoaded ? await getNotes({ page_size: 3 }) : notes;
+  contentLoaded = true;
   console.log({ notes })
   renderNotes(notes);
+
 
   // receive data from modal
   client.instance.receive(async function (event) {
