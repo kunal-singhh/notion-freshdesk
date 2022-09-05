@@ -12,8 +12,13 @@ async function init() {
     document.querySelector("body").addEventListener("click", function (e) {
       if (e.target.classList.contains("retry")) {
         document.querySelector(".error").innerHTML = "";
-        search();
         document.querySelector(".loader").style.display = "flex";
+        search();
+      }else if(e.target.classList.contains('reset')){
+        document.querySelector(".error").innerHTML = "";
+        document.querySelector(".loader").style.display = "flex";
+        document.querySelector('fw-input.search').value = "";
+        search();
       }
     });
 
@@ -215,6 +220,7 @@ function renderNotes(notes, append = false) {
   } else {
     markUp = `<div class="card fw-card-1 fw-p-24 fw-flex fw-items-center fw-flex-column">
       No Results Found!! <br>
+      <fw-button class='reset' color='green'>Reset</fw-button>
     </div>`;
   }
 
