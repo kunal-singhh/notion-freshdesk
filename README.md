@@ -22,10 +22,22 @@
 Initialially used API instead of SDK to update tickets hence explored the API for creating and fetching Tickets 
 
 ### Notion API (https://developers.notion.com/reference/intro)
-
+Working with Notion Databases, Pages, Properties 
 
 ### - Crayons Library (https://crayons.freshworks.com/)
 1. Custom Styled Components 
+
+### Steps to Setup your own Notion Freshdesk App 
+
+1. Duplicate the template for database template https://enchanted-bougon-d59.notion.site/2718c9eddc784e719b19a65ac9ff0e1b?v=41c555d0de37479182eabb37f42cddd0
+
+2. Create a new notion integration and copy the 50 character `api_key`  from https://www.notion.so/my-integrations
+![notion-integration](./docs/notion-integration.png)
+
+
+3. Share the database with the integration
+
+3. 
 
 ## Notes 
 
