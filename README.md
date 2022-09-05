@@ -9,11 +9,20 @@
 
 ## Learnings 
 
-### - Freshdesk SDK (https://developers.freshdesk.com/v2/docs/quick-start/)
+### Freshdesk SDK (https://developers.freshdesk.com/v2/docs/quick-start/)
 
-### - Freshdesk API  (https://developers.freshdesk.com/api/)
+- Data Methods 
+- Instance Methods 
+- Interface Methods  
+- Product Events 
+- Installation Parameters 
 
-### - Notion API (https://developers.notion.com/reference/intro)
+
+### Freshdesk API  (https://developers.freshdesk.com/api/)
+Initialially used API instead of SDK to update tickets hence explored the API for creating and fetching Tickets 
+
+### Notion API (https://developers.notion.com/reference/intro)
+
 
 ### - Crayons Library (https://crayons.freshworks.com/)
 1. Custom Styled Components 

@@ -33,6 +33,7 @@ async function init() {
     document
       .querySelector(".search-wrapper fw-button")
       .addEventListener("click", async function () {
+        document.querySelector(".loader").style.display = "flex";
         search();
       });
 
@@ -146,7 +147,7 @@ async function loadMore() {
       return;
     } else {
       let notes = await getNotes({
-        page_size: 2,
+        page_size: 3,
         start_cursor: cursor,
       });
       setAllTags(notes);
@@ -277,7 +278,7 @@ async function search() {
           },
         ],
       },
-      page_size: 2,
+      page_size: 3,
     });
     setAllTags(notes);
     renderNotes(notes);
