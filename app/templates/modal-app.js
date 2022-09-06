@@ -74,29 +74,11 @@ async function init() {
 
 init();
 
-async function loadMore() {
-  try {
-    if (cursor == null) {
-      document.querySelector(".load-more").style.display = "none";
-      return;
-    } else {
-      let notes = await getNotes({
-        page_size: 6,
-        start_cursor: cursor,
-      });
-      setAllTags(notes);
-      renderNotes(notes, true);
-    }
-  } catch (err) {
-    handleError(err)
-  }
-}
-
 
 function renderNotes(notes, append = false) {
   let markUp = "";
   console.log({ notes });
-  if (notes.length > 0) {
+  if (notes.length > 0) { 
     notes.map((note, index) => {
       return (markUp += `
       <div class='card fw-card-1 fw-p-24 fw-flex fw-flex-column' data-note-id='${
@@ -187,7 +169,7 @@ async function replytoTicket(reply_data) {
 async function search() {
   try {
     let keyword = document.querySelector(".search").value;
-    console.log(keyword);
+    console.log({keyword});
     let notes = await getNotes({
       filter: {
         or: [

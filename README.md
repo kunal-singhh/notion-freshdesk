@@ -17,14 +17,10 @@
 - Product Events 
 - Installation Parameters 
 
-
-### Freshdesk API  (https://developers.freshdesk.com/api/)
-Initialially used API instead of SDK to update tickets hence explored the API for creating and fetching Tickets 
-
 ### Notion API (https://developers.notion.com/reference/intro)
 Working with Notion Databases, Pages, Properties 
 
-### - Crayons Library (https://crayons.freshworks.com/)
+###  Crayons Library (https://crayons.freshworks.com/)
 1. Custom Styled Components 
 
 ### Steps to Setup your own Notion Freshdesk App 
