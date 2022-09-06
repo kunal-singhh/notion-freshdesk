@@ -51,9 +51,16 @@ Notion App Integration for creating and sharing Notion pages as self help articl
 8. Go to your freshdesk account ticket page and append it with `?dev=true` to test the application eg: `https://<YOUR_DOMAIN>.freshdesk.com/a/tickets/4?dev=true`
   
 
-##  Notes
+## Development Platform Use Cases in App
+Feature | Purpose
+App lifecycle methods |	app.initialized(), app.activated() 
+Data methods  |	To get ticket details, user details
+Interface methods |	To open/close modal, send/receive data across instances and create new ticket reply or append data to ticket reply
+Request methods |	For api calls post, get etc
+Instance methods | 	To get context inside modal - sharing data to-and-fro
+Installation params |  custom installation page (iparams.json is used) to collect api keys and user details
 
-  
+##  Notes
 -  We Can not invoke interface methods from modal hence pass them back to parent and then invoke interface methods
 -  instance methods can be used to send data between different instances modal <-> app
 
