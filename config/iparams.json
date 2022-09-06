@@ -1,0 +1,22 @@
+{
+    "contact": {
+      "display_name": "Contact Details",
+      "description": "Please enter the contact details",
+      "type": "text",
+      "required": true
+    },
+    "apiKey": {
+      "display_name": "API Key",
+      "description": "Please enter your api_key",
+      "type": "text",
+      "secure": true,
+      "required": true,
+      "type_attributes": {
+        "product": "freshdesk"
+      },
+      "regex": {
+        "length-limit": "^.{50}$",
+        "length-limit-error": "The API must be 50 characters long"
+       }
+    }
+  }

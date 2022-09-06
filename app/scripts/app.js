@@ -12,7 +12,6 @@ async function init() {
     var data = event.helper.getData();
     addTicketReply(data);
   });
-
   client.events.on("app.activated", onAppActivated);
 }
 
