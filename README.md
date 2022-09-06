@@ -38,7 +38,7 @@ Notion App Integration for creating and sharing Notion pages as self help articl
 5. Clone the repo `git clone https://github.com/kunal-singhh/notion-freshdesk`
 6. Type command `fdk run` to run your app
 7. Open the url `http://localhost:10001/custom_configs` for setting up your `api_key` copied at point `3`
-8. Go to your freshdesk account ticket page and append it with `?dev=true` to test the application
+8. Go to your freshdesk account ticket page and append it with `?dev=true` to test the application eg: `https://<YOUR_DOMAIN>.freshdesk.com/a/tickets/4?dev=true`
   
 
 ##  Notes
