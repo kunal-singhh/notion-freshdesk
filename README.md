@@ -1,4 +1,6 @@
-#  Freshdesk Notion App
+#  Freshdesk Notion App ![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white) ![Freshdesk](https://img.shields.io/badge/freshdesk-07C160?style=for-the-badge&logo=&logoColor=white)
+
+
 Notion App Integration for creating and sharing Notion pages as self help articles via Ticket Replies
 
 ![Banner](./docs/banner3.png)
