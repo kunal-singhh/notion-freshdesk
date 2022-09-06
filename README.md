@@ -3,9 +3,7 @@ Notion App Integration for creating and sharing Notion pages as self help articl
 
 ![Banner](./docs/banner3.png)
 
-![screenshot-boards](./docs/app-snap2.png)
-
-![Ticket](./docs/ticket-snap.jpg)
+![screenshot-boards](./docs/snap-group.png)
 
 ##  Technologies Used
 - [Freshdesk SDK](https://developers.freshdesk.com/v2/docs/quick-start/) 
