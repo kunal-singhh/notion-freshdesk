@@ -2,7 +2,7 @@
 
 ![Banner](./docs/banner3.png)
 
-- Notion App In egration for creating and sharing Notion pages as self help articles via Ticket Replies
+- Notion App Integration for creating and sharing Notion pages as self help articles via Ticket Replies
 
 ![screenshot-boards](./docs/app-snap2.png)
 ![Ticket](./docs/ticket-snap.jpg)
