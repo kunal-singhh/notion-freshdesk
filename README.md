@@ -54,21 +54,6 @@ Notion App Integration for creating and sharing Notion pages as self help articl
 ##  Notes
 
   
-
--  Can not invoke interface methods from modal hence pass them back to parent and then invoke interface methods
-
+-  We Can not invoke interface methods from modal hence pass them back to parent and then invoke interface methods
 -  instance methods can be used to send data between different instances modal <-> app
 
-  
-
-##  Future Scope
-
--  Work on a Sync up tool which syncs notion pages with Solution Articles in Freshdesk
-
-  
-  
-  
-
-And this will produce a flow chart:
-
- 
