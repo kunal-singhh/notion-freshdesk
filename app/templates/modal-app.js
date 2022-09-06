@@ -1,4 +1,4 @@
-var context, cursor;
+var context;
 
 async function init() {
   try {

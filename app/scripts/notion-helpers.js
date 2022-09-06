@@ -3,6 +3,7 @@ let headersList = {
     Authorization: "Bearer <%= iparam.api_key %> ", //secret_g8x8qRjQydSjOLWaYSH9X1CdLtQdExfOhAG8k7mFNkv",
     "Content-Type": "application/json",
 };
+var cursor;
 
 async function getNotes(filter = {}) {
   document.querySelector(".loader").style.display = "flex";
@@ -85,7 +86,7 @@ function handleError(err) {
     document.querySelector(
       ".error"
     ).innerHTML = `<div class="card fw-card-1 fw-p-24 fw-flex fw-items-center fw-flex-column">
-        Something went Wrong :: ${JSON.parse(err.response).message} <br> <fw-button class='retry' color='green'>Retry</fw-button>
+        Something went Wrong :: ${JSON.parse(err.response)}  <br> <fw-button class='retry' color='green'>Retry</fw-button>
         </div>`;
   }
   
