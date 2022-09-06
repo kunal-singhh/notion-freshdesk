@@ -35,11 +35,13 @@ Notion App Integration for creating and sharing Notion pages as self help articl
 1. Create a Notion Account 
 2.  Duplicate this [template](https://enchanted-bougon-d59.notion.site/2718c9eddc784e719b19a65ac9ff0e1b?v=41c555d0de37479182eabb37f42cddd0) for database template  
 3.  Create a new notion integration and copy the 50 character `api_key` from https://www.notion.so/my-integrations
-![notion-integration](./docs/notion-integration.png)
+![notion-integration](./docs/notion-int2.png)
 4.  Share the database with the integration to access it using API. 
+![notion-integration](./docs/notion-int3.png)
 5. Clone the repo `git clone https://github.com/kunal-singhh/notion-freshdesk`
 6. Type command `fdk run` to run your app
-7. Open the url `http://localhost:10001/custom_configs` for setting up your `api_key` copied at point `3`
+7. Open the url `http://localhost:10001/custom_configs` for setting up your `api_key` copied at point `3` and paste your api key with Name
+![iparams](./docs/iparams.png)
 8. Go to your freshdesk account ticket page and append it with `?dev=true` to test the application eg: `https://<YOUR_DOMAIN>.freshdesk.com/a/tickets/4?dev=true`
   
 
