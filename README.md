@@ -24,32 +24,20 @@ Notion App Integration for creating and sharing Notion pages as self help articl
 
   
 
--  ###  Crayons Library (https://crayons.freshworks.com/)
-
-1.  Custom Styled Components
-
-  
-
--  ###  Steps to Setup your own Notion Freshdesk App
+- [Crayons Library](https://crayons.freshworks.com/)
+	 - Using Custom Styled Components
+	 - Working with Custom Component Events 
+	 - Using reusable classes like `fw-flex` for designing and layout
 
   
 
-1.  Duplicate the template for database template https://enchanted-bougon-d59.notion.site/2718c9eddc784e719b19a65ac9ff0e1b?v=41c555d0de37479182eabb37f42cddd0
-
-  
-
-2.  Create a new notion integration and copy the 50 character `api_key` from https://www.notion.so/my-integrations
-
+##  Steps to Setup your own Notion <-> Freshdesk App
+1. Create a Notion Account 
+2.  Duplicate this [template](https://enchanted-bougon-d59.notion.site/2718c9eddc784e719b19a65ac9ff0e1b?v=41c555d0de37479182eabb37f42cddd0) for database template  
+3.  Create a new notion integration and copy the 50 character `api_key` from https://www.notion.so/my-integrations
 ![notion-integration](./docs/notion-integration.png)
-
-  
-  
-
-3.  Share the database with the integration
-
-  
-
-3.
+4.  Share the database with the integration to access it using API.
+5. 
 
   
 
