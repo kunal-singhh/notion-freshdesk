@@ -66,5 +66,70 @@ _________________
 
 ## Serverless App
 
-- Here I am using serverless product events to call an api endpoint (using beecepter for dynamic endpoints) which can be accepted as iparams. 
-- on conversation update I will call the endpoint with the payload and check calls from beecepter 
+- Here I am using serverless product events to call an api endpoint (using beecepter for dynamic endpoints) which can be accepted as iparams. https://beeceptor.com/console/freshdesk
+
+- Whitelisted beecepter endpoint to make Webhook calls & Register Product Event in `manifest.json`
+
+```json
+{
+  "platform-version": "2.2",
+  "product": {
+    "freshdesk": {
+      "events": {
+        "onConversationUpdate": {
+          "handler": "conversationUpdated"
+        }
+      },
+      "location":{} // simplified for example
+    }
+  },
+  "whitelisted-domains": [
+    "https://api.notion.com",
+    "https://test-app.freshdesk.com",
+    "https://*.free.beeceptor.com"   
+  ]
+}
+
+
+```
+
+- Added another Iparam for beecepter Webhook URL inparams.json
+
+```json
+"webhook_endpoint":{
+	"display_name":"Webhook Endpoint",
+	"description": "Please enter the Endpoint to call on Product Events",
+	"type": "text",
+	"required": true
+}
+```
+
+- Create a directory server with file `server.js` which has a callback for product events 
+
+```js
+exports = {
+  // args is a JSON block containing the payload information.
+  // args["iparam"] will contain the installation parameter values.
+  conversationUpdated: async function(args) {
+    console.log({args})
+    try{
+      let response = await $request.post(args.iparams.webhook_endpoint, {
+        json: args
+      })
+      console.log(JSON.stringify(response))
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
+};
+
+```
+
+- `fdk run` & Goto `http://localhost:10001/web/test` to test the product event and click simulate for simulating product event
+![Product Events](./docs/serverless-call.png)
+![Product Events response](./docs/serverless-call.png)
+
+- beecepter receives the api request
+![beecepter response](./docs/beecepter-response.png)
+![console response](./docs/console-response.png)

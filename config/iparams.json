@@ -18,5 +18,11 @@
         "length-limit": "^.{50}$",
         "length-limit-error": "The API must be 50 characters long"
        }
+    },
+    "webhook_endpoint":{
+      "display_name":"Webhook Endpoint",
+      "description": "Please enter the Endpoint to call on Product Events",
+      "type": "text",
+      "required": true
     }
   }
