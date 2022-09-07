@@ -2,6 +2,10 @@
   "platform-version": "2.2",
   "product": {
     "freshdesk": {
+      "events": {
+        "onConversationUpdate": {
+        "handler": "conversationUpdated"
+      },
       "location": {
         "ticket_sidebar": {
           "url": "index.html",
