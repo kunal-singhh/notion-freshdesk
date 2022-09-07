@@ -4,7 +4,8 @@
     "freshdesk": {
       "events": {
         "onConversationUpdate": {
-        "handler": "conversationUpdated"
+          "handler": "conversationUpdated"
+        }
       },
       "location": {
         "ticket_sidebar": {

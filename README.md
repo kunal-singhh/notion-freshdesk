@@ -61,3 +61,10 @@ Installation params | custom installation page (iparams.json is used) to collect
   
 -  We Can not invoke interface methods from modal hence pass them back to parent and then invoke interface methods
 -  instance methods can be used to send data between different instances modal <-> app
+
+_________________
+
+## Serverless App
+
+- Here I am using serverless product events to call an api endpoint (using beecepter for dynamic endpoints) which can be accepted as iparams. 
+- on conversation update I will call the endpoint with the payload and check calls from beecepter 
