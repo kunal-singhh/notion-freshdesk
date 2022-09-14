@@ -51,7 +51,7 @@ async function showNotify(type, message) {
 async function addTicketReply(data) {
   let contact = await client.data.get("contact");
   let greeting = `
-    Hello ${contact.contact.first_name}, <br>
+    Hello ${contact.contact.name.split(' ')[0]}, <br>
       Thank you for reaching out. Sharing reference article/articles with you which will help you with your query.
       <br><br>
       --Solutions--
